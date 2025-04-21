@@ -22,10 +22,10 @@ export default function Page() {
         className="w-32 h-32 rounded-2xl shadow-md"
       />
       <h1 className="text-white font-bold text-2xl mt-4">Kaiotou - 答え合わせアプリ</h1>
-      <p className="text-gray-300 text-sm mt-4 w-full">
+      <p className="text-gray-300 text-sm text-left mt-4 w-full">
         PDFの解答例から、選択問題の答え合わせができます。LLM（Genimi-1.5-flash）で解答例を生成しているため精度が良くない場合があります。
       </p>
-      <p className="text-gray-300 text-sm mt-4 w-full">
+      <p className="text-gray-300 text-sm text-left mt-4 w-full">
         応用情報技術者試験の解答例では正常に動くことを確認済みです。
       </p>
       <div className="mt-4 w-full">

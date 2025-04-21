@@ -100,7 +100,7 @@ export function AnswerForm({ url, handleSetResult }: AnswerFormProps) {
                 <tr key={item.id} className="grid grid-cols-[1fr_10fr] w-full items-center my-2 ">
                   <td className="text-lg text-left w-8">{item.id}</td>
                   <td>
-                    <div className={`grid grid-cols-${answerData.options.length} w-full`}>
+                    <div className={`flex w-full justify-stretch`}>
                       {answerData?.options.map((option) => (
                         <button
                           key={option.id}
@@ -109,6 +109,9 @@ export function AnswerForm({ url, handleSetResult }: AnswerFormProps) {
                             ${option.id === 1 && "rounded-l-md"}
                             ${option.id === answerData.options.length && "rounded-r-md"}`}
                           onClick={() => updateInput(item.id, option.id)}
+                          style={{
+                            width: `calc(100% / ${answerData.options.length})`,
+                          }}
                         >
                           {option.label}
                         </button>
