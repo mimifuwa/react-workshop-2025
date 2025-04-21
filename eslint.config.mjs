@@ -32,20 +32,11 @@ const eslintConfig = [
       import: importPlugin,
     },
     rules: {
-      "sort-imports": [
-        "error",
-        { ignoreCase: true, ignoreDeclarationSort: true },
-      ],
+      "sort-imports": ["error", { ignoreCase: true, ignoreDeclarationSort: true }],
       "import/order": [
         "error",
         {
-          groups: [
-            "builtin",
-            "external",
-            "internal",
-            ["sibling", "parent"],
-            "object",
-          ],
+          groups: ["builtin", "external", "internal", ["sibling", "parent"], "object"],
           pathGroups: [
             {
               pattern: "react",

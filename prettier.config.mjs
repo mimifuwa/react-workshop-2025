@@ -11,13 +11,7 @@ const config = {
 
   overrides: [
     {
-      files: [
-        "src/**/*.js",
-        "src/**/*.jsx",
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        "src/**/*.json",
-      ],
+      files: ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx", "src/**/*.json"],
     },
   ],
 };
