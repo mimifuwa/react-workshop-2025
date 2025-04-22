@@ -67,7 +67,6 @@ export function AnswerForm({ url, handleSetResult }: AnswerFormProps) {
       }, 0),
       total: answerData?.data.length ?? 0,
     };
-    console.log(result);
     handleSetResult(result);
   };
 

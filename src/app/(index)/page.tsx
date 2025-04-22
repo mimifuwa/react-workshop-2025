@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import { Result } from "@/types/result";
@@ -9,7 +10,8 @@ import { ResultModal } from "./_components/result-modal";
 import { UrlForm } from "./_components/url-form";
 
 export default function Page() {
-  const [url, setUrl] = useState<string>("");
+  const searchParams = useSearchParams();
+  const [url, setUrl] = useState<string>(searchParams.get("url") ?? "");
   const [result, setResult] = useState<Result>();
 
   return (
