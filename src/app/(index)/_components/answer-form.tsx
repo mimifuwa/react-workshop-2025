@@ -93,7 +93,25 @@ export function AnswerForm({ url, handleSetResult }: AnswerFormProps) {
         </div>
       ) : answerData ? (
         <>
-          <table className="w-full">
+          <div role="alert" className="alert alert-info alert-soft w-full">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="h-6 w-6 shrink-0 stroke-current"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            <span>
+              {answerData.title || "名称不明の試験"} (全{answerData.data.length}問)
+            </span>
+          </div>
+          <table className="w-full mt-4">
             <tbody>
               {input.map((item) => (
                 <tr key={item.id} className="grid grid-cols-[1fr_10fr] w-full items-center my-2 ">

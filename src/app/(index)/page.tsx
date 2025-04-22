@@ -30,7 +30,7 @@ export default function Page() {
       <div className="mt-4 w-full">
         <UrlForm url={url} setUrl={setUrl} />
       </div>
-      <div className="mt-8 w-full">
+      <div className="mt-4 w-full">
         {url && <AnswerForm url={url} handleSetResult={setResult} />}
       </div>
       <ResultModal isOpen={!!result} result={result} handleClose={() => setResult(undefined)} />

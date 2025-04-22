@@ -8,6 +8,7 @@ export interface Option {
   label: string;
 }
 export interface Answer {
+  title?: string;
   data: Array<Question>;
   options: Array<Option>;
 }
