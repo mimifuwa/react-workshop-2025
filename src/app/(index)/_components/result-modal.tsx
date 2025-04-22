@@ -19,7 +19,6 @@ export function ResultModal({ isOpen, result, handleClose }: ResultModalProps) {
       dialog.showModal();
     } else {
       dialog.close();
-      // 1秒待ってからhandleClose呼び出し
       setTimeout(() => {
         handleClose();
       }, 1000);
