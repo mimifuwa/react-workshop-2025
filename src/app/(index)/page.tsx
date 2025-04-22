@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Result } from "@/types/result";
 
 import { AnswerForm } from "./_components/answer-form";
+import { QrCode } from "./_components/qr_code";
 import { ResultModal } from "./_components/result-modal";
 import { UrlForm } from "./_components/url-form";
 
@@ -15,7 +16,7 @@ export default function Page() {
   const [result, setResult] = useState<Result>();
 
   return (
-    <div className="flex flex-col items-center justify-center max-w-md mx-auto px-6 md:px-0 py-8">
+    <div className="flex flex-col items-center justify-center max-w-md mx-auto px-6 py-8 h-full overflow-y-scroll">
       <Image
         src="/icon.png"
         width={256}
@@ -34,6 +35,7 @@ export default function Page() {
         {url && <AnswerForm url={url} handleSetResult={setResult} />}
       </div>
       <ResultModal isOpen={!!result} result={result} handleClose={() => setResult(undefined)} />
+      {url && <QrCode url={url} />}
     </div>
   );
 }
