@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
 
 import { getAnswerData } from "@/actions/answer";
@@ -8,7 +8,8 @@ import type { Result } from "@/types/result";
 
 interface AnswerFormProps {
   url: string;
-  handleSetResult: (result: Result) => void;
+  result?: Result;
+  handleSetResult: (result: Result | undefined) => void;
 }
 
 const errorMessage = () => {
@@ -32,11 +33,45 @@ const errorMessage = () => {
   );
 };
 
-export function AnswerForm({ url, handleSetResult }: AnswerFormProps) {
+const correctSign = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6 shrink-0 stroke-current"
+      fill="none"
+      viewBox="0 0 24 24"
+      color="#605DFF"
+    >
+      <circle cx="12" cy="12" r="10" strokeWidth="4" />
+    </svg>
+  );
+};
+
+const incorrectSign = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-6 w-6 shrink-0 stroke-current"
+      fill="none"
+      viewBox="0 0 24 24"
+      color="#FF627D"
+    >
+      <path strokeLinecap="round" strokeWidth="4" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  );
+};
+
+export function AnswerForm({ url, result, handleSetResult }: AnswerFormProps) {
   // 正解データ取得
   const { data: answerData, error, isLoading } = useSWR<Answer>(url, () => getAnswerData(url));
 
   const [input, setInput] = useState<Question[]>([]);
+
+  // 答えは変更されないのでMemo
+  const answerMap = useMemo(() => {
+    if (!answerData) return new Map<number, number>();
+    return new Map(answerData.data.map((item) => [item.id, item.answer]));
+  }, [answerData]);
 
   // 入力時
   const updateInput = (id: number, value: number) => {
@@ -115,7 +150,17 @@ export function AnswerForm({ url, handleSetResult }: AnswerFormProps) {
             <tbody>
               {input.map((item) => (
                 <tr key={item.id} className="grid grid-cols-[1fr_10fr] w-full items-center my-2 ">
-                  <td className="text-lg text-left w-8">{item.id}</td>
+                  <td className="text-xl text-left w-8 font-bold">
+                    <div className="relative flex items-center justify-center text-shadow-md">
+                      <div className="z-20">{item.id} </div>
+                      <div className="absolute text-4xl scale-150 z-10">
+                        {result &&
+                          (item.answer === answerMap.get(item.id)
+                            ? correctSign()
+                            : incorrectSign())}
+                      </div>
+                    </div>
+                  </td>
                   <td>
                     <div className={`flex w-full justify-stretch`}>
                       {answerData?.options.map((option) => (
@@ -125,7 +170,10 @@ export function AnswerForm({ url, handleSetResult }: AnswerFormProps) {
                             ${item.answer === option.id ? "btn-primary" : "btn-outline"}
                             ${option.id === 1 && "rounded-l-md"}
                             ${option.id === answerData.options.length && "rounded-r-md"}`}
-                          onClick={() => updateInput(item.id, option.id)}
+                          onClick={() => {
+                            updateInput(item.id, option.id);
+                            handleSetResult(undefined);
+                          }}
                           style={{
                             width: `calc(100% / ${answerData.options.length})`,
                           }}
