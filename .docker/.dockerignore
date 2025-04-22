@@ -3,6 +3,3 @@ node_modules
 out
 pnpm-store
 .docker/
-
-prisma/migrations
-prisma/*.db

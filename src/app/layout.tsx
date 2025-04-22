@@ -4,7 +4,7 @@ import { fonts } from "@/lib/fonts";
 
 import "./globals.css";
 
-const appName = "答え合わせ";
+const appName = "Saiten";
 
 export const metadata: Metadata = {
   title: {

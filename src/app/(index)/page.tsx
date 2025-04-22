@@ -15,13 +15,13 @@ export default function Page() {
   return (
     <div className="flex flex-col items-center justify-center max-w-md mx-auto px-6 md:px-0 py-8">
       <Image
-        src="/image.png"
+        src="/icon.png"
         width={256}
         height={256}
-        alt="Kaitou"
+        alt="Saiten"
         className="w-32 h-32 rounded-2xl shadow-md"
       />
-      <h1 className="text-white font-bold text-2xl mt-4">Kaiotou - 答え合わせアプリ</h1>
+      <h1 className="text-white font-bold text-2xl mt-4">Saiten - 採点しよう。</h1>
       <p className="text-gray-300 text-sm text-left mt-4 w-full">
         PDFの解答例から、選択問題の答え合わせができます。LLM（Genimi-1.5-flash）で解答例を生成しているため精度が良くない場合があります。
       </p>
