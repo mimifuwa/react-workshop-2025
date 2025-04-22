@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 
 import { fonts } from "@/lib/fonts";
 
@@ -27,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={`${fonts.map((font) => font.variable).join(" ")}`}>
-      <body>{children}</body>
+      <body>
+        <Suspense>{children}</Suspense>
+      </body>
     </html>
   );
 }
