@@ -1,14 +1,18 @@
+"use client";
 import { useEffect, useRef } from "react";
 
 import type { Result } from "@/types/result";
 
+import { QrCodeCollapse } from "./qr-code-collapse";
+
 interface ResultModalProps {
   isOpen: boolean;
   result?: Result;
+  url: string;
   handleClose: () => void;
 }
 
-export function ResultModal({ isOpen, result, handleClose }: ResultModalProps) {
+export function ResultModal({ isOpen, result, url, handleClose }: ResultModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -27,7 +31,7 @@ export function ResultModal({ isOpen, result, handleClose }: ResultModalProps) {
 
   return (
     <>
-      <dialog ref={dialogRef} id="my_modal_1" className="modal">
+      <dialog ref={dialogRef} className="modal">
         <div className="modal-box">
           <h3 className="font-bold text-lg">採点結果</h3>
           {result && (
@@ -36,6 +40,8 @@ export function ResultModal({ isOpen, result, handleClose }: ResultModalProps) {
               {Math.round((result?.correct / result?.total) * 100)}%)
             </p>
           )}
+
+          <QrCodeCollapse url={url} />
 
           <div className="modal-action">
             <form method="dialog">

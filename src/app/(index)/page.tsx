@@ -15,7 +15,7 @@ export default function Page() {
   const [result, setResult] = useState<Result>();
 
   return (
-    <div className="flex flex-col items-center justify-center max-w-md mx-auto px-6 md:px-0 py-8">
+    <div className="flex flex-col items-center justify-center max-w-md mx-auto px-6 py-8 h-full overflow-y-scroll">
       <Image
         src="/icon.png"
         width={256}
@@ -33,7 +33,12 @@ export default function Page() {
       <div className="mt-4 w-full">
         {url && <AnswerForm url={url} handleSetResult={setResult} />}
       </div>
-      <ResultModal isOpen={!!result} result={result} handleClose={() => setResult(undefined)} />
+      <ResultModal
+        isOpen={!!result}
+        result={result}
+        url={url}
+        handleClose={() => setResult(undefined)}
+      />
     </div>
   );
 }
