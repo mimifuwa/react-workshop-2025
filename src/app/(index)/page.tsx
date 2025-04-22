@@ -6,7 +6,6 @@ import { useState } from "react";
 import { Result } from "@/types/result";
 
 import { AnswerForm } from "./_components/answer-form";
-import { QrCode } from "./_components/qr_code";
 import { ResultModal } from "./_components/result-modal";
 import { UrlForm } from "./_components/url-form";
 
@@ -34,8 +33,12 @@ export default function Page() {
       <div className="mt-8 w-full">
         {url && <AnswerForm url={url} handleSetResult={setResult} />}
       </div>
-      <ResultModal isOpen={!!result} result={result} handleClose={() => setResult(undefined)} />
-      {url && <QrCode url={url} />}
+      <ResultModal
+        isOpen={!!result}
+        result={result}
+        url={url}
+        handleClose={() => setResult(undefined)}
+      />
     </div>
   );
 }
