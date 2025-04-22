@@ -12,6 +12,30 @@ export const metadata: Metadata = {
     template: `%s - ${appName}`,
     default: appName,
   },
+  description: "採点を、しよう。 - PDFの解答例から、選択問題の答え合わせができます。",
+
+  openGraph: {
+    title: appName,
+    description: "採点を、しよう。 - PDFの解答例から、選択問題の答え合わせができます。",
+    url: "https://saiten.mimifuwa.cc",
+    siteName: appName,
+    images: [
+      {
+        url: "https://saiten.mimifuwa.cc/ogp.png",
+        width: 1200,
+        height: 630,
+        alt: "Saiten - 採点を、しよう。",
+      },
+    ],
+    locale: "ja_JP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: appName,
+    description: "採点を、しよう。 - PDFの解答例から、選択問題の答え合わせができます。",
+    images: ["https://saiten.mimifuwa.cc/ogp.png"],
+  },
 };
 
 export const viewport: Viewport = {

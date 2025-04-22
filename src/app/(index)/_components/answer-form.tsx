@@ -67,7 +67,6 @@ export function AnswerForm({ url, result, handleSetResult }: AnswerFormProps) {
 
   const [input, setInput] = useState<Question[]>([]);
 
-  // 答えは変更されないのでMemo
   const answerMap = useMemo(() => {
     if (!answerData) return new Map<number, number>();
     return new Map(answerData.data.map((item) => [item.id, item.answer]));
@@ -103,6 +102,10 @@ export function AnswerForm({ url, result, handleSetResult }: AnswerFormProps) {
       total: answerData?.data.length ?? 0,
     };
     handleSetResult(result);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   // 入力データの初期化

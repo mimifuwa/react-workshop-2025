@@ -7,6 +7,7 @@ import { Result } from "@/types/result";
 
 import { AnswerForm } from "./_components/answer-form";
 import { ResultModal } from "./_components/result-modal";
+import { ReturnTopButton } from "./_components/return-top-button";
 import { UrlForm } from "./_components/url-form";
 
 export default function Page() {
@@ -15,7 +16,7 @@ export default function Page() {
   const [result, setResult] = useState<Result>();
 
   return (
-    <div className="flex flex-col items-center justify-center max-w-lg mx-auto px-6 py-8 h-full overflow-y-scroll">
+    <div className="flex flex-col items-center justify-center max-w-lg mx-auto px-6 py-8 h-full overflow-y-scroll pb-36">
       <Image
         src="/icon.png"
         width={256}
@@ -39,6 +40,7 @@ export default function Page() {
         url={url}
         handleClose={() => setResult(undefined)}
       />
+      <ReturnTopButton />
     </div>
   );
 }
